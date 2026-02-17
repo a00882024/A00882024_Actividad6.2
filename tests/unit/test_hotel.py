@@ -1,20 +1,6 @@
 """Unit tests for Hotel."""
-import os
 import pytest
 from src.hotel import Hotel
-
-
-@pytest.fixture(autouse=True)
-def clean_data():
-    """Clean up JSON data files before and after each test."""
-    data_dir = os.path.join(os.path.dirname(__file__), '..', '..', 'data')
-    os.makedirs(data_dir, exist_ok=True)
-    filepath = os.path.join(data_dir, 'hotels.json')
-    if os.path.exists(filepath):
-        os.remove(filepath)
-    yield
-    if os.path.exists(filepath):
-        os.remove(filepath)
 
 
 class TestHotelCreate:
