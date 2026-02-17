@@ -16,5 +16,8 @@ build/
 # OS
 .DS_Store
 
+# Coverage
+htmlcov/
+
 # Data
 data/
