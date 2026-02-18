@@ -1,6 +1,7 @@
 """Hotel model with JSON persistence."""
 import uuid
 from src.storage import load, save
+from src.reservation import Reservation
 
 DATA_FILE = 'hotels.json'
 
@@ -55,6 +56,16 @@ class Hotel:
                 h["name"] = name
                 break
         save(DATA_FILE, data)
+
+    def reserve_a_room(self, customer, booking_info):
+        """Reserve a room at this hotel for a customer."""
+        return Reservation.create_reservation(
+            customer=customer, hotel=self, booking_info=booking_info
+        )
+
+    def cancel_a_reservation(self, reservation):
+        """Cancel a reservation at this hotel."""
+        reservation.cancel_reservation()
 
     def to_str(self):
         """Return a string representation of the hotel."""

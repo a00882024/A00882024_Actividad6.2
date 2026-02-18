@@ -1,6 +1,7 @@
 """Unit tests for Hotel."""
 import pytest
 from src.hotel import Hotel
+from src.reservation import Reservation
 
 
 class TestHotelCreate:
@@ -122,3 +123,46 @@ class TestHotelFindById:
         """Verify find_by_id raises ValueError for nonexistent id."""
         with pytest.raises(ValueError):
             Hotel.find_by_id("nonexistent-id")
+
+
+class TestHotelReserveARoom:
+    """Tests for Hotel.reserve_a_room()."""
+
+    def test_reserve_a_room_returns_reservation(self, sample_reservation_data):
+        """Verify reserve_a_room returns a Reservation instance."""
+        hotel, customer, info = sample_reservation_data
+        reservation = hotel.reserve_a_room(customer, info)
+        assert isinstance(reservation, Reservation)
+
+    def test_reserve_a_room_links_hotel(self, sample_reservation_data):
+        """Verify reserve_a_room sets the hotel id on the reservation."""
+        hotel, customer, info = sample_reservation_data
+        reservation = hotel.reserve_a_room(customer, info)
+        assert reservation.hotel_id == hotel.id
+
+    def test_reserve_a_room_persists(self, sample_reservation_data):
+        """Verify reserve_a_room persists the reservation to disk."""
+        hotel, customer, info = sample_reservation_data
+        hotel.reserve_a_room(customer, info)
+        reservations = Reservation.all()
+        assert len(reservations) == 1
+
+
+class TestHotelCancelAReservation:
+    """Tests for Hotel.cancel_a_reservation()."""
+
+    def test_cancel_a_reservation_sets_cancelled(self,
+                                                 sample_reservation_data):
+        """Verify cancel_a_reservation sets status to cancelled."""
+        hotel, customer, info = sample_reservation_data
+        reservation = hotel.reserve_a_room(customer, info)
+        hotel.cancel_a_reservation(reservation)
+        assert reservation.status == "cancelled"
+
+    def test_cancel_a_reservation_persists(self, sample_reservation_data):
+        """Verify cancel_a_reservation persists the change to disk."""
+        hotel, customer, info = sample_reservation_data
+        reservation = hotel.reserve_a_room(customer, info)
+        hotel.cancel_a_reservation(reservation)
+        found = Reservation.find_by_id(reservation.id)
+        assert found.status == "cancelled"
