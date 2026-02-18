@@ -1,0 +1,92 @@
+[
+  {
+    "id": "89cb626d-b7a6-484e-b741-7aea1cc32a6c",
+    "hotel_id": "7077cdbd-9039-4c2a-8b68-f742906aa3cd",
+    "customer_id": "f2e77cfd-1252-4a3a-92b3-9acc25cc3c55",
+    "check_in": "2026-03-01",
+    "check_out": "2026-03-05",
+    "room": "101",
+    "status": "cancelled"
+  },
+  {
+    "id": "8d161589-7a6c-4eb6-8822-43a5a9b0efd9",
+    "hotel_id": "7077cdbd-9039-4c2a-8b68-f742906aa3cd",
+    "customer_id": "e52ff49b-de5d-4053-b11b-e513066fa612",
+    "check_in": "2026-03-10",
+    "check_out": "2026-03-14",
+    "room": "202",
+    "status": "cancelled"
+  },
+  {
+    "id": "3517ae80-2b09-4c9f-b355-17973ddf9778",
+    "hotel_id": "04a6043e-b606-47b5-bf82-359e29ba47fd",
+    "customer_id": "a717af4a-894e-4845-9da2-e67ba37bbd98",
+    "check_in": "2026-04-01",
+    "check_out": "2026-04-03",
+    "room": "303",
+    "status": "active"
+  },
+  {
+    "id": "eae293df-0793-44ff-ab25-b69359b28e14",
+    "hotel_id": "04a6043e-b606-47b5-bf82-359e29ba47fd",
+    "customer_id": "a5f68b17-7c35-4958-a5fa-ff0c6d87cfbd",
+    "check_in": "2026-04-05",
+    "check_out": "2026-04-10",
+    "room": "104",
+    "status": "active"
+  },
+  {
+    "id": "3427f078-8ca3-4a8c-a43c-15ced4a10129",
+    "hotel_id": "f168d7fe-6f97-4078-abf0-49cedd68398e",
+    "customer_id": "c741b088-971a-47c6-8b3e-c1ca704dff90",
+    "check_in": "2026-05-01",
+    "check_out": "2026-05-07",
+    "room": "501",
+    "status": "active"
+  },
+  {
+    "id": "0bea1138-996e-4989-a55f-f40cb709a12a",
+    "hotel_id": "f168d7fe-6f97-4078-abf0-49cedd68398e",
+    "customer_id": "f2e77cfd-1252-4a3a-92b3-9acc25cc3c55",
+    "check_in": "2026-05-10",
+    "check_out": "2026-05-15",
+    "room": "502",
+    "status": "active"
+  },
+  {
+    "id": "3a48cd04-ff2b-4ab1-b195-059f8a9234e4",
+    "hotel_id": "7077cdbd-9039-4c2a-8b68-f742906aa3cd",
+    "customer_id": "e52ff49b-de5d-4053-b11b-e513066fa612",
+    "check_in": "2026-06-01",
+    "check_out": "2026-06-04",
+    "room": "201",
+    "status": "active"
+  },
+  {
+    "id": "27fc3f4a-725d-4a53-94d6-21fd8a472a3b",
+    "hotel_id": "04a6043e-b606-47b5-bf82-359e29ba47fd",
+    "customer_id": "a717af4a-894e-4845-9da2-e67ba37bbd98",
+    "check_in": "2026-06-10",
+    "check_out": "2026-06-12",
+    "room": "301",
+    "status": "active"
+  },
+  {
+    "id": "29e4aa00-ea6f-4e6b-ba23-f67a40940003",
+    "hotel_id": "f168d7fe-6f97-4078-abf0-49cedd68398e",
+    "customer_id": "a5f68b17-7c35-4958-a5fa-ff0c6d87cfbd",
+    "check_in": "2026-07-01",
+    "check_out": "2026-07-05",
+    "room": "105",
+    "status": "active"
+  },
+  {
+    "id": "b06ca405-0a93-46f4-94b5-a4b9dbfd8724",
+    "hotel_id": "7077cdbd-9039-4c2a-8b68-f742906aa3cd",
+    "customer_id": "c741b088-971a-47c6-8b3e-c1ca704dff90",
+    "check_in": "2026-07-10",
+    "check_out": "2026-07-14",
+    "room": "103",
+    "status": "active"
+  }
+]
