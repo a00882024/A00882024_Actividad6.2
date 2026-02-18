@@ -14,8 +14,12 @@ def load(filename):
     filepath = os.path.join(DATA_DIR, filename)
     if not os.path.exists(filepath):
         return []
-    with open(filepath, 'r', encoding='utf-8') as f:
-        return json.load(f)
+    try:
+        with open(filepath, 'r', encoding='utf-8') as f:
+            return json.load(f)
+    except json.JSONDecodeError as e:
+        print(f"Error: Corrupt JSON in {filename}: {e}")
+        return []
 
 
 def save(filename, data):

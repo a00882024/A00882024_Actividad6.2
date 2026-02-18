@@ -53,6 +53,18 @@ class Reservation:
                 break
         save(DATA_FILE, data)
 
+    @staticmethod
+    def _is_valid_record(record):
+        """Check if a record has all required keys."""
+        required = {
+            "id", "hotel_id", "customer_id",
+            "check_in", "check_out", "room", "status",
+        }
+        if not isinstance(record, dict) or not required.issubset(record):
+            print(f"Warning: Skipping invalid reservation record: {record}")
+            return False
+        return True
+
     @classmethod
     def _build(cls, record):
         """Build a Reservation instance from a JSON record."""
@@ -73,7 +85,7 @@ class Reservation:
         """Find a reservation by id. Raises ValueError if not found."""
         data = load(DATA_FILE)
         for r in data:
-            if r["id"] == reservation_id:
+            if cls._is_valid_record(r) and r["id"] == reservation_id:
                 return cls._build(r)
         raise ValueError(f"Reservation {reservation_id} not found")
 
@@ -81,4 +93,4 @@ class Reservation:
     def all(cls):
         """Return a list of all persisted Reservation instances."""
         data = load(DATA_FILE)
-        return [cls._build(r) for r in data]
+        return [cls._build(r) for r in data if cls._is_valid_record(r)]

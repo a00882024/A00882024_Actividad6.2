@@ -22,12 +22,21 @@ class Customer:
         save(DATA_FILE, data)
         return customer
 
+    @staticmethod
+    def _is_valid_record(record):
+        """Check if a record has all required keys."""
+        required = {"id", "name"}
+        if not isinstance(record, dict) or not required.issubset(record):
+            print(f"Warning: Skipping invalid customer record: {record}")
+            return False
+        return True
+
     @classmethod
     def find_by_id(cls, customer_id):
         """Find a customer by id. Raises ValueError if not found."""
         data = load(DATA_FILE)
         for c in data:
-            if c["id"] == customer_id:
+            if cls._is_valid_record(c) and c["id"] == customer_id:
                 return cls(customer_id=c["id"], name=c["name"])
         raise ValueError(f"Customer {customer_id} not found")
 
@@ -35,7 +44,10 @@ class Customer:
     def all(cls):
         """Return a list of all persisted Customer instances."""
         data = load(DATA_FILE)
-        return [cls(customer_id=c["id"], name=c["name"]) for c in data]
+        return [
+            cls(customer_id=c["id"], name=c["name"])
+            for c in data if cls._is_valid_record(c)
+        ]
 
     def delete(self):
         """Delete this customer from disk. Raises ValueError if not found."""

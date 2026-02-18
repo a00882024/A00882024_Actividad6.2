@@ -23,12 +23,21 @@ class Hotel:
         save(DATA_FILE, data)
         return hotel
 
+    @staticmethod
+    def _is_valid_record(record):
+        """Check if a record has all required keys."""
+        required = {"id", "name"}
+        if not isinstance(record, dict) or not required.issubset(record):
+            print(f"Warning: Skipping invalid hotel record: {record}")
+            return False
+        return True
+
     @classmethod
     def find_by_id(cls, hotel_id):
         """Find a hotel by id. Raises ValueError if not found."""
         data = load(DATA_FILE)
         for h in data:
-            if h["id"] == hotel_id:
+            if cls._is_valid_record(h) and h["id"] == hotel_id:
                 return cls(hotel_id=h["id"], name=h["name"])
         raise ValueError(f"Hotel {hotel_id} not found")
 
@@ -36,7 +45,10 @@ class Hotel:
     def all(cls):
         """Return a list of all persisted Hotel instances."""
         data = load(DATA_FILE)
-        return [cls(hotel_id=h["id"], name=h["name"]) for h in data]
+        return [
+            cls(hotel_id=h["id"], name=h["name"])
+            for h in data if cls._is_valid_record(h)
+        ]
 
     def delete(self):
         """Delete this hotel from disk. Raises ValueError if not found."""
