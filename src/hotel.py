@@ -23,6 +23,15 @@ class Hotel:
         return hotel
 
     @classmethod
+    def find_by_id(cls, hotel_id):
+        """Find a hotel by id. Raises ValueError if not found."""
+        data = load(DATA_FILE)
+        for h in data:
+            if h["id"] == hotel_id:
+                return cls(hotel_id=h["id"], name=h["name"])
+        raise ValueError(f"Hotel {hotel_id} not found")
+
+    @classmethod
     def all(cls):
         """Return a list of all persisted Hotel instances."""
         data = load(DATA_FILE)

@@ -105,3 +105,20 @@ class TestHotelUpdate:
         original_id = hotel.id
         hotel.update(name="Hilton")
         assert hotel.id == original_id
+
+
+class TestHotelFindById:
+    """Tests for Hotel.find_by_id()."""
+
+    def test_find_by_id_returns_hotel(self):
+        """Verify find_by_id returns the correct hotel."""
+        hotel = Hotel.create(name="Four Seasons")
+        found = Hotel.find_by_id(hotel.id)
+        assert isinstance(found, Hotel)
+        assert found.id == hotel.id
+        assert found.name == hotel.name
+
+    def test_find_by_id_nonexistent_raises(self):
+        """Verify find_by_id raises ValueError for nonexistent id."""
+        with pytest.raises(ValueError):
+            Hotel.find_by_id("nonexistent-id")

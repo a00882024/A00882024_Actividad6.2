@@ -105,3 +105,20 @@ class TestCustomerUpdate:
         original_id = customer.id
         customer.update(name="Jane Doe")
         assert customer.id == original_id
+
+
+class TestCustomerFindById:
+    """Tests for Customer.find_by_id()."""
+
+    def test_find_by_id_returns_customer(self):
+        """Verify find_by_id returns the correct customer."""
+        customer = Customer.create(name="Jon Doe")
+        found = Customer.find_by_id(customer.id)
+        assert isinstance(found, Customer)
+        assert found.id == customer.id
+        assert found.name == customer.name
+
+    def test_find_by_id_nonexistent_raises(self):
+        """Verify find_by_id raises ValueError for nonexistent id."""
+        with pytest.raises(ValueError):
+            Customer.find_by_id("nonexistent-id")

@@ -23,6 +23,15 @@ class Customer:
         return customer
 
     @classmethod
+    def find_by_id(cls, customer_id):
+        """Find a customer by id. Raises ValueError if not found."""
+        data = load(DATA_FILE)
+        for c in data:
+            if c["id"] == customer_id:
+                return cls(customer_id=c["id"], name=c["name"])
+        raise ValueError(f"Customer {customer_id} not found")
+
+    @classmethod
     def all(cls):
         """Return a list of all persisted Customer instances."""
         data = load(DATA_FILE)
